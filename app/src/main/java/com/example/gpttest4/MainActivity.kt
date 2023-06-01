@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var messageList: ArrayList<MessageRVModal>
     val url = "https://api.openai.com/v1/completions"
 
-    val OPENAI_API_KEY = ""
+    val OPENAI_API_KEY = "..."
 
 
     @SuppressLint("NotifyDataSetChanged")
