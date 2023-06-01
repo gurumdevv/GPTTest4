@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.KeyEvent
-import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import android.widget.Toast
@@ -27,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var messageList: ArrayList<MessageRVModal>
     val url = "https://api.openai.com/v1/completions"
 
-    val OPENAI_API_KEY = "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"
+    val OPENAI_API_KEY = ""
 
 
     @SuppressLint("NotifyDataSetChanged")
