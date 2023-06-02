@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var messageRVAdapter: MessageRVAdapter
     lateinit var messageList: ArrayList<MessageRVModal>
     lateinit var question: String
-    private val client = OkHttpClient()
+    private val client = OkHttpClient() //OKHttp 객체 생성
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         messageRV.adapter = messageRVAdapter
         textInputLayout = findViewById(R.id.idTILQuery)
 
-        queryEdt.setOnEditorActionListener(TextView.OnEditorActionListener{ textView: TextView, i: Int, keyEvent: KeyEvent? ->
+        queryEdt.setOnEditorActionListener(TextView.OnEditorActionListener{ textView: TextView, i: Int, keyEvent: KeyEvent? -> //엔터가 입력시 동작
             if(i == EditorInfo.IME_ACTION_SEND){
                 processData()
                 return@OnEditorActionListener true
@@ -55,18 +55,20 @@ class MainActivity : AppCompatActivity() {
             false
         })
 
-        textInputLayout.setEndIconOnClickListener {
+        textInputLayout.setEndIconOnClickListener { //전송 버튼을 누를 경우 동작
             processData()
         }
     }
 
     private fun processData() {
+        //textbox에 있는 string문을 검사하고 조건에 부합하는 경우 messageList(Arraylist<MessageRVModal>)에 추가함 -> RecyclerView.Adapter에 통지되어 View가 갱신됨
         if(queryEdt.text.toString().isNotEmpty()) {
             question = queryEdt.text.toString()
             messageList.add(MessageRVModal(question, "user"))
             messageRVAdapter.notifyDataSetChanged()
 
             getResponse(queryEdt.text.toString()) { response ->
+                //getResponse 메서드를 호출하면 response가 string문으로 반환됨 -> 반환된 string 문을 messageList에 추가 -> RecyclerView.Adapter에 통지되어 View가 갱신됨
                 runOnUiThread {
                     messageList.add(MessageRVModal(response, "bot"))
                     Log.v("data", response)
@@ -75,7 +77,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         } else {
-            Toast.makeText(this, "문장을 입력하세요", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "문장을 입력하세요", Toast.LENGTH_SHORT).show() //입력된 문장이 없는 경우 Toast 출력
         }
     }
 
@@ -98,7 +100,7 @@ class MainActivity : AppCompatActivity() {
             .post(requestBody.toRequestBody("application/json".toMediaTypeOrNull()))
             .build()
 
-        client.newCall(request).enqueue(object : Callback {
+        client.newCall(request).enqueue(object : Callback { // 요청을 비동기 처리
             override fun onFailure(call: Call, e: IOException) {
                 Log.e("error", "API FALILED", e)
                 Toast.makeText(this@MainActivity, "현재 네트워크가 불안정합니다. 잠시 후 시도해주세요.",
