@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/idRVMessages"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/idTILQuery"/>
+        android:layout_above="@+id/idTILQuery"
+        android:background="#9bbbd4"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/idTILQuery"
@@ -19,28 +21,32 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="5dp"
-        android:hint="Enter your query"
         android:padding="5dp"
         android:textColorHint="@color/black"
-        app:hintTextColor="@color/black" >
+        app:hintTextColor="@color/black"
+        app:endIconMode="custom"
+        app:endIconDrawable="@drawable/ic_send"
+        app:endIconTint="#fef01b"
+        app:boxCornerRadiusBottomEnd="20dp"
+        app:boxCornerRadiusTopEnd="20dp"
+        app:boxCornerRadiusBottomStart="20dp"
+        app:boxCornerRadiusTopStart="20dp"
+        app:boxBackgroundColor="#F7F8F8"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/idEdtQuery"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_send"
-            android:drawableTint="#774DF2"
             android:ems="10"
             android:imeOptions="actionSend"
             android:importantForAutofill="no"
             android:inputType="text"
             android:textColor="@color/black"
-            android:textColorHint="#8D6E63"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+           />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-
 
 
 </RelativeLayout>

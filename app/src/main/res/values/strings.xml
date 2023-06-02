@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GPTTest4</string>
+    <string name="bot_name">GPT</string>
 </resources>
